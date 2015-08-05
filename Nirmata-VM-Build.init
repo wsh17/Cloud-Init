@@ -1,0 +1,14 @@
+#!/bin/bash
+########################################################################################
+# Small Bash script to be used in Cloud-Init to update Ubuntu14.04 and add docker 1.7  #
+########################################################################################
+echo "Executing Nirmata VM image Prep cloud-init script to add Docker 1.7 and the Mirata Agent"
+echo "Installing Updates"
+sudo apt-get update
+echo "Install wget if not there"
+sudo apt-get wget
+echo "WGET the Docker packages for 1.7"
+sudo wget -qO- https://get.docker.com/ | sh
+echo "Add in the Mirata OpenStack Agent"
+sudo curl -sSL http://www.nirmata.io/nirmata-host-agent/setup-nirmata-agent.sh | sudo sh -s openstack
+echo "Done with Nirata Image Prep Exercise" 
